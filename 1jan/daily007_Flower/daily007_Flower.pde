@@ -26,7 +26,7 @@ void draw() {
     }
 
     if (saveFrames) {
-        saveFrame("imgs/boop-#####.png");
+        saveFrame("imgs/img-#####.png");
     }
 }
 
