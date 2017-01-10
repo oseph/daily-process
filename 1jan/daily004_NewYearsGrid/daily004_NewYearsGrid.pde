@@ -11,13 +11,13 @@ float rectWidth;
 float rectHeight;
 boolean saveFrames = false;
 boolean starter = false;
-int rows = 36;
-int cols = 56;
+int rows = 56;
+int cols = 36;
 
 void setup() {
     size(1008, 1008); // make sure w/h are divisible my rows and cols
     background(random(255), random(255), random(255));
-    noSmooth();
+    smooth();
     noStroke();
     rectWidth = width/rows;
     rectHeight = height/cols;
@@ -70,6 +70,7 @@ class Rectangules {
     float n;
     float rot;
     float rotFlip;
+    float speedInc;
 
     Rectangules(float x, float y) {
         this.x = x+rectWidth;
@@ -80,7 +81,8 @@ class Rectangules {
         r = random(255);
         g = random(255);
         b = random(255);
-        speed = random(1, 3);
+        speed = 0.5;
+        speedInc = random(0.01, 0.03);
         rx = random(0, 5000);
         midwayLimit = random (height*.25, height*.75);
         rot = 0;
@@ -92,15 +94,15 @@ class Rectangules {
         // if fitt is spawned in upper half
         // it grows downward, else...
         if (initY <= midwayLimit) {
-            y = (y+speed);
+            y+=speed;
         } else {
-            y = (y-speed);
+            y-=speed;
         }
         
         if (n > 0.5) {
-            x = x+n;
+            x += n;
         } else {
-            x = x-n;
+            x -= n;
         }
     }
 
@@ -108,30 +110,31 @@ class Rectangules {
         
         // if rectangle is spawned in left half, move right, else left.
         if (initY <= midwayLimit) {
-            x = (x+speed);
+            x += speed;
         } else {
-            x = (x-speed);
+            x -= speed;
         }
 
         if (n > 0.5) { 
-            y = y+n;
+            y += n;
         } else {
-            y = y-n;
+            y -= n;
         }
     }
 
     void updater() {
         n = noise(rx);
         rx += iter;
-        rot+=n;
+        rot += 1.25;
+        speed += speedInc;
     }
 
     void display() {
         fill(c);
         pushMatrix();
-        translate(x, y);
+        translate(x-rectWidth/2, y-rectHeight/2);
         rotate(radians(rot*rotFlip));
-        translate(-rectWidth, -rectHeight);
+        translate(-rectWidth/2, -rectHeight/2);
         rect(0, 0, rectWidth, rectHeight);
         popMatrix();
     }
