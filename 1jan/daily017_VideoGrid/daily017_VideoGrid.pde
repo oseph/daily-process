@@ -2,24 +2,24 @@
  * 017_VideoGrid
  * by Josh Holinaty / Jan.14.2016
  * ---
- * Select random x,y coordinate, and create a tile from a video file. 
+ * Select a base x,y coordinate to create a tile for The Grid. 
  * Offset it randomly every time it appears in The Grid.
- * Ever 200 frames the grid will re-roll to a different dimension.
+ * Ever 200 frames the grid will "re-roll" to a different dimension.
  **/
 
 import processing.video.*;
 
 Movie mov;
 PGraphics pg;
-int numX = (int) random(4, 12);
-int numY = (int) random(4, 12);
+int numX = (int) random(3, 12);
+int numY = (int) random(3, 12);
 PImage[][] img;
 int tileWidth, tileHeight;
 int getX, getY;
 int[][] offsetX;
 int[][] offsetY;
 int cropX, cropY;
-int rndrng = 100;
+int rndrng = 50;
 int counter = 0;
 
 void setup() {
@@ -28,7 +28,7 @@ void setup() {
     // make sure your vid is equal or larger than graphic size,
     // otherwise black pixels will appear.
     pg = createGraphics(800, 800); 
-    mov = new Movie(this, "your movie filepath");
+    mov = new Movie(this, "j1.mp4");
     mov.loop();
 
     while (width % numY != 0) {
@@ -73,6 +73,7 @@ void draw() {
         for (int y = 0; y < numY; y++) {
             getX = cropX + offsetX[x][y];
             getY = cropY + offsetY[x][y];
+            
             getX = constrain(getX, 0, pg.width-tileWidth);
             getY = constrain(getY, 0, pg.height-tileHeight);
             img[x][y] = pg.get(getX, getY, tileWidth, tileHeight);
