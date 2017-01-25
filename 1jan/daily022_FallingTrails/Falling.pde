@@ -1,5 +1,5 @@
 class Falling {
-    ArrayList<Shape> trail; 
+    Queue trail; 
     float x;
     float y;
     float speed;
@@ -12,15 +12,14 @@ class Falling {
     float h;
 
     Falling(float x, float y, int num) {
-        trail = new ArrayList<Shape>();
+        trail = new LinkedList();
         this.x = x;
         this.y = y;
-        iter = 0.05;
-        w = random(10,300);
+        iter = random(0.005, 0.03);
+        w = random(10,60);
         c = color(random(255), random(255), random(255));
         speed = (int)random(5, 8);
         rx = random(0, 5000);
-        //life = (int)random(50, 300);
         this.num = num;
     }
 
@@ -30,24 +29,24 @@ class Falling {
             trail.add(new Shape(x, y, w, w, c));
         }      
         if (trail.size() == num && trail.size() > 0) {
-            trail.remove(0);
+            trail.poll();
         }
 
-        for (int i = 0; i < trail.size(); i++) {
-            Shape r = trail.get(i);
+        for (Iterator<Shape> it = trail.iterator(); it.hasNext();) {
+            Shape r = it.next();
             r.display();
         }
     }
 
     void update() {
-        n = noise(rx);
         rx += iter;
+        n = noise(rx);      
         y+=speed;
 
         if (n > 0.5) {
-            x+=n*3;
+            x+=n;
         } else {
-            x-=n*3;
+            x-=n;
         }
     }
 }

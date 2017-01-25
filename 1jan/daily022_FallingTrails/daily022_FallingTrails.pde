@@ -1,33 +1,31 @@
 /**
- * 022_TrailingShapes
- * by Josh Holinaty / Dec.29.2016
+ * 022_FallingTrails
+ * by Josh Holinaty / Jan.21.2017
  * ---
  * Fun with ArrayList and creating object trails.
  * Yes, with a kiss of perlin noise.
  * Yup, also some erosion filter.
  **/
+ 
+import java.util.Iterator;
+import java.util.Queue;
+import java.util.LinkedList;
 
-int num = 28; // number of rectangles
+int num = 50; // number of rectangles
 boolean saveFrames = false; // save frames for movie making fun
 Falling[] fallies= new Falling[num];
 boolean filterFlip;
+int trailLength = (int) random(5,80);
 
 void setup() {
-    background(random(255), random(255), random(255));
-    noSmooth();
+    size(700, 700, P2D);
+    smooth();
     noStroke();
-    size(700, 700);
-    makeRects();
+    makeShapes();
 }
 
 void draw() {
-    background(120);
-    //if (filterFlip) {
-        filter(LIGHTEST);
-    //} else {
-    //    filter(DILATE);
-    //}
-
+    filter(ERODE);
     for (int i = 0; i < fallies.length; i++) {
         fallies[i].display();
     }
@@ -38,12 +36,12 @@ void draw() {
 }
 
 void mousePressed() {
-    makeRects();
+    makeShapes();
     filterFlip = !filterFlip;
 }
 
-void makeRects() {
+void makeShapes() {
     for (int i = 0; i < fallies.length; i++) {
-        fallies[i] = new Falling(random(-50, width+20), i*-20, (int)random(50,200));
+        fallies[i] = new Falling(random(-50, width+20), -10*i, trailLength);
     }
 }
