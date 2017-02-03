@@ -6,15 +6,19 @@
  **/
 
 boolean saveFrames = false;
-int num = 5;
-Burst[] bursts = new Burst[num];
+int num = 8;
+Burst[] bursts;
+int rMin = 6;
+int rMax = 25;
 
 void setup() {
     size(800, 800);
     smooth();
+    bursts = new Burst[num];
     for (int i = 0; i < bursts.length; i++) {
         bursts[i] = new Burst(0);
     }
+    
 }
 
 void draw() {
@@ -25,7 +29,7 @@ void draw() {
     }
     
     if (saveFrames) {
-        saveFrame("imgs2/img-####.tga");
+        saveFrame("imgs/img-####.tga");
     }
 }
 
@@ -42,10 +46,10 @@ class Burst {
     float rot;
 
     public Burst(float s) {
-        this.num = (int)random(15, 60);
+        this.num = (int)random(rMin, rMax);
         this.s = s;
         this.length = random(50, 450);
-        this.speed = (int)random(3, 6);
+        this.speed = (int)random(3, 8);
         this.colr = (random(100) > 70) ? color(0) : (random(100) > 50) ? color(255) : color(125); // B&W
         //this.colr = color( random(0,255), random(0,255),  random(0,255)); // COLOUR
         this.w = random(1, 20);
@@ -59,7 +63,7 @@ class Burst {
             w = random(1, 20);
             colr = (random(100) > 70) ? color(0) : (random(100) > 50) ? color(255) : color(125); // B&W
             // colr = color( random(0,255), random(0,255),  random(0,255)); // COLOUR
-            num = (int)random(15, 60);
+            num = (int)random(rMin, rMax);
             length = random(50, 450);
             s = 0;
             e = 0;
