@@ -1,4 +1,4 @@
-class DancingRects {
+class DancingShapes {
     float x;
     float y;
     float initY;
@@ -14,7 +14,7 @@ class DancingRects {
     float rot;
     int CIRCLE;
 
-    DancingRects(float x, float y) {
+    DancingShapes(float x, float y) {
         this.x = x;
         this.y = y;
         initY = y;

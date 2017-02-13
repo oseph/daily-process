@@ -1,5 +1,5 @@
 /**
- * 029_DancingRects_v2
+ * 029_DancingShapes
  * by Josh Holinaty / Feb.03.2017
  * ---
  * Random rectangles dancing across the screen in both x and y axis, with perlin snuggles. 
@@ -7,7 +7,7 @@
 
 int num = 15;
 boolean saveFrames = false;
-DancingRects[] dancies = new DancingRects[num];
+DancingShapes[] dancies = new DancingShapes[num];
 int imgCount = 0;
 
 void setup() {
@@ -41,6 +41,6 @@ void mousePressed() {
 
 void makeRect() {
     for (int i = 0; i < dancies.length; i++) {
-        dancies[i] = new DancingRects(random(-50, width+50), random(-50, height+50));
+        dancies[i] = new DancingShapes(random(-50, width+50), random(-50, height+50));
     }
 }

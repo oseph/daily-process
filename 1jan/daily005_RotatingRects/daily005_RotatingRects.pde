@@ -6,7 +6,7 @@
  * squeegeeing trails behind them with subtle perlinity.
  **/
 
-int num = 100;
+int num = 30;
 boolean saveFrames = false;
 RotatingRects[] rotoRects = new RotatingRects[num];
 
@@ -18,14 +18,13 @@ void setup() {
 }
 
 void draw() {
-    
+   
     for (int i = 0; i < rotoRects.length; i++) {
         rotoRects[i].updater();
         rotoRects[i].display();
     }
-
     if (saveFrames) {
-        saveFrame("imgs/img_#####.png");
+        saveFrame("imgs/img_#####.tga");
     }
     
 }
@@ -65,9 +64,9 @@ class RotatingRects {
         r = random(255);
         g = random(255);
         b = random(255);
-        c = color(r, g, b);
-        rectWidth = (int)random(5, width/3);
-        rectHeight = (int)random(5, height/2);
+        c = color(r, g, b, this.opacity);
+        rectWidth = (int)random(width/4, (width/3)*2);
+        rectHeight = (int)random(height/4, (height/3)*2);
         rx = random(0, 5000);
         rot = random(0, 2000); 
         rotFlip = ( (int)random(100) < 50 ) ? 1: -1;
@@ -77,8 +76,8 @@ class RotatingRects {
         n = noise(rx);
         rx += 0.05;
         rot += n;
-        y += random(0.4, 0.6);
-        x += random(0.4, 0.6);
+        y += random(3);
+        x += random(3);
     }
 
     void display() {
