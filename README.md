@@ -1,4 +1,5 @@
 # daily-process
-Daily sketches in Processing
+Processing sketches
 
-A personal challenge to code a daily sketch using Processing. My only criteria: make it aesthetically pleasing (somehow).
+A collection of Processing sketches in my spare time. 
+My only criteria: make it aesthetically pleasing (somehow).
