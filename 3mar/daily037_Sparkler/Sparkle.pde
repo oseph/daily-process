@@ -10,6 +10,7 @@ class Sparkle {
   float xPos, yPos;
   color col, strokeCol;
   float strokew;
+  boolean shape;
 
   Sparkle() {
     setup();
@@ -20,19 +21,23 @@ class Sparkle {
     h = random(15);
     yDir = 1;
     xDir = 1;
-    initX = mouseX;
-    initY = mouseY;
+    initX = x;
+    initY = y;
     yPos = initY;
     xPos = initX;
     nOff = random(3000);
-    len = random(40, 220);
+    len = random(20, 220);
     angle = random(360);
     speed = random(4, 6);
     lenLimit = random(150, 175);
     col = randCol();
     dead = false;
     strokew = 1;
-    strokeCol = randCol();
+    float r = red(col);
+    float g = green(col);
+    float b = blue(col);
+    strokeCol = color(g, r, b);
+    shape = (random(1) > 0.5) ? true : false;
   }
 
   void particle() {
@@ -49,23 +54,18 @@ class Sparkle {
   }
 
   color randCol() {
-    color c = color(random(100,155), random(150,255), random(150,255));
+    color c = color(random(215, 255), random(215, 255), random(215, 255));
     return c;
   }
 
   void display() {
     pushMatrix();
-    fill(col);
-    stroke(strokeCol);
+    fill(255);
+    stroke(255);
     translate(xPos, yPos);
-    strokeWeight(strokew);
-    rect(-w/2, -h/2, w, w);
+    noStroke();
+    ellipse(-w/2, -h/2, w, w);
     popMatrix();
-  }
-
-  void RectoidsetInit(float _x, float _y) {
-    initX = _x;
-    initY = _y;
   }
 
   boolean isDead() {
