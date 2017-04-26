@@ -52,7 +52,7 @@ class Sparkle {
     h += speed*0.1;
     strokew+= 0.08;
   }
-
+  
   color randCol() {
     color c = color(random(215, 255), random(215, 255), random(215, 255));
     return c;

@@ -19,6 +19,7 @@ float[] randos;
 
 void setup() {
   size(800, 800, P2D);
+  smooth();
   pg = createGraphics(width, height, P2D);
   ang = 0;
   for (int i = 0; i < arr.length; i++) {
@@ -43,8 +44,8 @@ void draw() {
 PImage makeMask (float w, float h) {
   int r = (int)random(arr.length);
   pg.beginDraw();
-  pg.background(0);
   pg.smooth();
+  pg.background(0);
   pg.noStroke();
   pg.fill(255);
   pg.ellipse(pg.width/2, pg.height/2, w, h);

@@ -24,6 +24,7 @@ void setup() {
 }
 
 void draw() {
+  
   angle+=3;
   x = width/2+cos(radians(angle))*50;
   y = height/2+sin(radians(angle))*50;
@@ -40,5 +41,6 @@ void draw() {
     s.particle();
     s.display();
   }
+  
   saveFrame("img/img####.tga");
 }
