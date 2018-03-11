@@ -1,5 +1,3 @@
-# daily-process
-Processing sketches
+# Daily Process Sketchbook
 
-A collection of Processing sketches in my spare time. 
-My only criteria: make it aesthetically pleasing (somehow).
+A collection of Processing sketches created in my spare time. Trying to make (sometimes simple) pretty things, but not necessarily daily.
